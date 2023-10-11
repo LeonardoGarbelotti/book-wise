@@ -8,17 +8,32 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
+    "@phosphor-icons/react": "^2.0.13",
+    "@prisma/client": "^5.4.1",
+    "@stitches/react": "^1.2.8",
+    "@tanstack/react-query": "^4.36.1",
+    "axios": "^1.5.1",
+    "next": "latest",
+    "next-auth": "^4.23.2",
+    "next-seo": "^6.1.0",
     "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
+    "@rocketseat/eslint-config": "^2.1.0",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/uuid": "^9.0.5",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "prisma": "^5.4.1",
+    "ts-node": "^10.9.1",
+    "typescript": "latest",
+    "uuid": "^9.0.1"
   }
 }
