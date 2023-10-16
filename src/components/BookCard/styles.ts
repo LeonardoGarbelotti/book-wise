@@ -1,5 +1,5 @@
 import { Heading } from '@/components/typography'
-import { styled } from '../../../../../../stitches.config'
+import { styled } from '../../../stitches.config'
 import Image from 'next/image'
 
 export const BookCardContainer = styled('div', {
@@ -28,7 +28,7 @@ export const ReadBadge = styled('span', {
   color: '$green100',
   fontWeight: '$bold',
   fontSize: '$xs',
-  padding: '$1 $3',
+  padding: '$1 $2',
   borderRadius: '0px 4px 0px 4px',
 })
 

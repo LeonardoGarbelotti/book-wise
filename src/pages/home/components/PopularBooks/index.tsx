@@ -1,7 +1,7 @@
 import { Text } from '@/components/typography'
 import { PopularBooksContainer } from './styles'
 import { ActionLink } from '@/components/ui/ActionLink'
-import { BookCard, BookWithAvgRating } from './BookCard'
+import { BookCard, BookWithAvgRating } from '@/components/BookCard'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/axios'
 

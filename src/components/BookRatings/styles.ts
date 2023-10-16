@@ -1,16 +1,15 @@
-import { styled } from '../../../../../stitches.config'
+import { styled } from '../../../stitches.config'
 
-export const PopularBooksContainer = styled('div', {
-  width: '100%',
+export const BookRatingsContainer = styled('section', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '$4',
-  marginTop: 65,
+  marginTop: 40,
 
-  header: {
+  '> header': {
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '$4',
   },
 
   '> section': {
