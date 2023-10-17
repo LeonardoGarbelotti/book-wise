@@ -33,7 +33,7 @@ export function BookCard({ book, size = 'md' }: BookCardProps) {
   }
 
   return (
-    <RatingsDialog>
+    <RatingsDialog bookId={book?.id}>
       <BookCardContainer>
         {book?.alreadyRead && <ReadBadge>LIDO</ReadBadge>}
         <BookImage

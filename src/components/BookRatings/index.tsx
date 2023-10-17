@@ -1,11 +1,24 @@
+import { useState } from 'react'
 import { Text } from '../typography'
 import { ActionLink } from '../ui/ActionLink'
-import { UserRatingCard } from './UserRatingCard'
+import { RatingWithAuthor, UserRatingCard } from './UserRatingCard'
 import { BookRatingsContainer } from './styles'
+import { RatingForm } from './RatingForm'
 
-export function BookRatings() {
+interface BookRatingsProps {
+  ratings: RatingWithAuthor[]
+  bookId: string
+}
+
+export function BookRatings({ ratings, bookId }: BookRatingsProps) {
+  const [showForm, setShowForm] = useState(false)
+
+  const sortedRatingsByDate = ratings.sort((a, b) => {
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  })
+
   function handleRate() {
-    alert('alow')
+    setShowForm(true)
   }
 
   return (
@@ -15,19 +28,11 @@ export function BookRatings() {
         <ActionLink withoutIcon text="Avaliar" onClick={handleRate} />
       </header>
       <section>
-        {Array.from({ length: 6 }).map((_, index) => (
-          <UserRatingCard
-            key={index}
-            rating={{
-              rate: 3,
-              user: {
-                name: 'Leonardo',
-                avatar_url: 'https://github.com/LeonardoGarbelotti.png',
-              },
-              created_at: new Date(),
-              description: 'asldjhaskdjhaskld haskljdhakl sjhdklajshd kasjhd',
-            }}
-          />
+        {showForm && (
+          <RatingForm bookId={bookId} onCancel={() => setShowForm(false)} />
+        )}
+        {sortedRatingsByDate.map((rating) => (
+          <UserRatingCard key={rating.id} rating={rating} />
         ))}
       </section>
     </BookRatingsContainer>
