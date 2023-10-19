@@ -1,4 +1,4 @@
-import { Heading, Text } from '@/components/Typography'
+import { Heading, Text } from '@/components/typography'
 import { ReactNode } from 'react'
 import { Container } from './styles'
 
