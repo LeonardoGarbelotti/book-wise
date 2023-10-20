@@ -4,6 +4,7 @@ import {
   BookContent,
   BookDetails,
   BookImage,
+  CompactDetails,
   RatingCardContainer,
   ToggleShowMoreButton,
   UserDetails,
@@ -22,9 +23,10 @@ export interface RatingWithAuthorAndBook extends Rating {
 
 interface RatingCardProps {
   rating: RatingWithAuthorAndBook
+  variant?: 'default' | 'compact'
 }
 
-export function RatingCard({ rating }: RatingCardProps) {
+export function RatingCard({ rating, variant = 'default' }: RatingCardProps) {
   const pastTimeSinceRating = getRelativeTimeString(
     new Date(rating.created_at),
     'pt-BR',
@@ -38,21 +40,24 @@ export function RatingCard({ rating }: RatingCardProps) {
   } = useToggleShowMore(rating.book.summary, MAX_SUMMARY_LENGHT)
 
   return (
-    <RatingCardContainer>
-      <UserDetails>
-        <section>
-          <Link href={`/profile/${rating.user_id}`}>
-            <Avatar src={rating.user.avatar_url!} alt={rating.user.name} />
-          </Link>
-          <div>
-            <Text>{rating.user.name}</Text>
-            <Text size="sm" color="gray-400">
-              {pastTimeSinceRating}
-            </Text>
-          </div>
-        </section>
-        <RatingStars rating={rating.rate} />
-      </UserDetails>
+    <RatingCardContainer variant={variant}>
+      {variant === 'default' && (
+        <UserDetails>
+          <section>
+            <Link href={`/profile/${rating.user_id}`}>
+              <Avatar src={rating.user.avatar_url!} alt={rating.user.name} />
+            </Link>
+            <div>
+              <Text>{rating.user.name}</Text>
+              <Text size="sm" color="gray-400">
+                {pastTimeSinceRating}
+              </Text>
+            </div>
+          </section>
+          <RatingStars rating={rating.rate} />
+        </UserDetails>
+      )}
+
       <BookDetails>
         <Link href={`/explore?book=${rating.book_id}`}>
           <BookImage
@@ -64,6 +69,14 @@ export function RatingCard({ rating }: RatingCardProps) {
         </Link>
         <BookContent>
           <div>
+            {variant === 'compact' && (
+              <CompactDetails>
+                <Text size="sm" color="gray-300">
+                  {pastTimeSinceRating}
+                </Text>
+                <RatingStars rating={rating.rate} />
+              </CompactDetails>
+            )}
             <Heading size="xs">{rating.book.name}</Heading>
             <Text size="sm" color="gray-400">
               {rating.book.author}
